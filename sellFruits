@@ -1,0 +1,43 @@
+-- Hiển thị tên tác giả trong 2 giây
+local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCore("ChatMakeSystemMessage", {
+    Text = "KUNI_3aesadthur",
+    Color = Color3.fromRGB(0, 255, 0),
+    Font = Enum.Font.SourceSansBold,
+    FontSize = Enum.FontSize.Size24
+})
+wait(2)
+
+-- Hàm tự động bán tất cả trái cây trong kho đồ
+local function sellAllFruits()
+    local player = game.Players.LocalPlayer
+    local backpack = player:WaitForChild("Backpack")
+
+    for _, item in pairs(backpack:GetChildren()) do
+        if item:IsA("Tool") and item.Name:lower():find("fruit") then
+            -- Gửi sự kiện bán item lên server (tùy thuộc vào hệ thống game)
+            local sellEvent = game:GetService("ReplicatedStorage"):FindFirstChild("SellItem")
+            if sellEvent then
+                sellEvent:FireServer(item.Name)
+                wait(0.2) -- tránh spam quá nhanh
+            end
+        end
+    end
+end
+
+-- Hàm tự động thu hoạch và trồng cây
+local function autoFarm()
+    -- Thực hiện các hành động thu hoạch và trồng cây tại đây
+    -- Ví dụ: gọi các hàm tương ứng để thu hoạch và trồng cây
+end
+
+-- Hàm tự động mua hạt giống và trang bị
+local function autoBuy()
+    -- Thực hiện các hành động mua hạt giống và trang bị tại đây
+    -- Ví dụ: gọi các hàm tương ứng để mua hạt giống và trang bị
+end
+
+-- Gọi các hàm khi script chạy
+sellAllFruits()
+autoFarm()
+autoBuy()
